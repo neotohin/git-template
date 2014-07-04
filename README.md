@@ -24,4 +24,4 @@ SCREENSHOTS
 ======
 As of July 4, 2014
 
-![GIT Template](http://i.imgur.com/PMflTlT)
+![GIT Template](http://i.imgur.com/PMflTlT.png)
