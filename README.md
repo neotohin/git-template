@@ -22,6 +22,9 @@ INSTALLATION
 $git clone https://github.com/neotohin/git-template.git ~/.git-template   
 $git config --global init.templatedir '~/git-template'    
 
+Initiate a new project in your system. That will have all hooks from this template.
+
+
 SCREENSHOTS
 ======
 As of July 4, 2014
