@@ -1,0 +1,44 @@
+#!/usr/bin/php
+<?php
+
+
+require_once __DIR__ . '/includes/colors.php';
+require_once __DIR__ . '/includes/phpCheck.php';
+require_once __DIR__ . '/includes/jsCheck.php';
+
+
+$output = array();
+$return = 0;
+
+// Get the list of files in this commit.
+exec("git diff --name-only --cached", $output);
+
+$exit_status = 0;
+
+// Loop through files.
+foreach ($output as $file) {
+
+    // Check If PHP Files
+    if ( preg_match('/\.(php|module|inc|install)$/', $file)) {
+        $out = phpCheck::run( $file ) ;
+        if( $out == 1 ) $exit_status = 1;
+    }
+
+    // Check If Javascript Files
+    if ( preg_match('/\.(js)$/', $file)) {
+        $out = jsCheck::run( $file ) ;
+        if( $out == 1 ) $exit_status = 1;
+    }
+
+
+}
+
+if( $exit_status == 1 ){
+  Colors::showInfo("\n
+    \n ##########################################################
+    \n If you want to ignore this validation run with --no-verify
+    \n ##########################################################
+    ");
+}
+
+exit($exit_status);
